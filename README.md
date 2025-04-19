@@ -1,61 +1,3 @@
-Okay, the `tree` output is perfect. It shows exactly how your successful Ben Eater CPU project was organized. Let's use this as the basis for the `fpga-ice40-template` repository.
-
-We'll copy the essential structure and scripts, replacing project-specific code (`computer.sv`, `alu.sv`, etc.) with minimal placeholders.
-
-**Proposed `fpga-ice40-template` Structure & Content:**
-
-```
-fpga-ice40-template/
-├── .gitignore              # Specifies intentionally untracked files
-├── README.md               # Explains how to use the template
-├── constraints/
-│   ├── template.pcf        # Placeholder PCF constraints (rename per project)
-│   └── template.sdc        # Placeholder SDC constraints (rename per project)
-├── fixtures/               # Placeholder for simulation data files (e.g., memory init)
-│   └── .gitkeep            # Keep the empty directory in Git
-├── sim/                    # Placeholder for simulation waveform settings
-│   └── default.gtkw        # Example GTKWave save file
-├── src/
-│   ├── _files_sim.f        # List of files for simulation compilation
-│   ├── _files_synth.f      # List of files for synthesis
-│   ├── core/
-│   │   └── arch_defs_pkg.sv # Placeholder for common definitions (optional)
-│   ├── top.sv              # Minimal placeholder top-level module
-│   └── utils/
-│       └── timescale.v     # Defines `timescale for simulation (optional but good)
-├── test/
-│   ├── test_utilities_pkg.sv # Your assertion helpers package
-│   └── top_tb.sv           # Minimal placeholder testbench for top.sv
-└── scripts/
-    ├── build.sh            # Your improved build script
-    └── simulate.sh         # Your improved simulation script
-```
-
----
-
-**File Content Details:**
-
-**1. `.gitignore`** (Essential to keep repo clean)
-
-```gitignore
-# Build artifacts
-build/
-*.log
-*.vcd
-*.vvp
-*.json
-*.asc
-*.bin
-
-# OS generated files
-.DS_Store
-*.swp
-*~
-```
-
-**2. `README.md`**
-
-```markdown
 # FPGA iCE40 Open Source Toolchain Project Template
 
 This repository provides a starting template for FPGA projects targeting Lattice iCE40 FPGAs (like the Alchitry Cu) using the open-source toolchain (Yosys, nextpnr, sv2v, Icarus Verilog).
@@ -100,4 +42,4 @@ This repository provides a starting template for FPGA projects targeting Lattice
 *   `test/`: Testbenches and simulation utilities.
 *   `scripts/`: Build and simulation scripts.
 *   `build/`: Generated build/simulation artifacts (ignored by git).
-```
+
