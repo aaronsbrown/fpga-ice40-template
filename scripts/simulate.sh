@@ -200,16 +200,20 @@ popd > /dev/null
 
 # --- Optionally Open Waveform in gtkwave ---
 WAVEFORM="$BUILD_DIR/waveform.vcd"
-SESSION_FILE="sim/8-bit-baseline.gtkw"
+SESSION_FILE="$PROJECT_DIR/sim/default.gtkw"
+# MODIFY the gtkwave launch section slightly:
 if [ -f "$WAVEFORM" ]; then
     if [ "$NO_VIZ" = false ]; then
         log_info "Opening waveform in gtkwave..."
-        gtkwave "$WAVEFORM" "$SESSION_FILE" &
+        if [ -f "$SESSION_FILE" ]; then
+            gtkwave "$WAVEFORM" "$SESSION_FILE" &
+        else
+            log_info "Default session file '$SESSION_FILE' not found, opening waveform only."
+            gtkwave "$WAVEFORM" &
+        fi
     else
         log_info "Waveform generated, skipping visualization (--no-viz)."
     fi
 else
     log_error "Waveform file $WAVEFORM not found. Ensure your testbench generates a VCD file."
 fi
-
-log_success "Simulation complete!"
